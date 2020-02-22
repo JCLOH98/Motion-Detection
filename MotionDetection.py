@@ -28,7 +28,7 @@ while (cap.isOpened()):
     blurdiff = cv.GaussianBlur(cvtColordiff,(3,3),0);
     _,thresdiff = cv.threshold(blurdiff,30,255,cv.THRESH_BINARY);
     dilateddiff = cv.dilate(thresdiff, None, iterations=3);
-    contours, _ = cv.findContours(dilateddiff, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE);
+    _, contours, _ = cv.findContours(dilateddiff, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE);
     cv.imshow("Diff",dilateddiff);
 
     #end product
