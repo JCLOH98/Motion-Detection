@@ -9,10 +9,13 @@ backSubKNN = cv.createBackgroundSubtractorKNN();
 while True:
     ret, frame = cap.read();
     cv.imshow("Ori frame",frame);
+
     fgMaskMOG = backSubMOG.apply(frame);
     fgMaskKNN = backSubKNN.apply(frame);
-    cv.imshow("MOG fg mask",fgMaskMOG);
-    cv.imshow("KNN fg mask",fgMaskKNN);
+    _,fgMaskMOG_bin = cv.threshold(fgMaskMOG,10,255,cv.THRESH_BINARY);
+    _,fgMaskKNN_bin = cv.threshold(fgMaskKNN,10,255,cv.THRESH_BINARY);
+    cv.imshow("MOG fg mask",fgMaskMOG_bin);
+    cv.imshow("KNN fg mask",fgMaskKNN_bin);
     
     key = cv.waitKey(1);
     if key==ord("q"):
